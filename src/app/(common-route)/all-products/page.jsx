@@ -3,7 +3,7 @@ import ProductCardSkeleton from "@/components/ProductCardSkeleton";
 import React, { Suspense } from "react";
 
 const allProductsPage = async () => {
-  const res = await fetch("http://localhost:3000/api/products", {
+  const res = await fetch("/api/products", {
     cache: "no-store",
   });
   const products = await res.json();
