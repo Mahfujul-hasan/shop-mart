@@ -9,7 +9,6 @@ import {
 import LoginForm from "@/components/LoginForm";
 import { FieldSeparator } from "@/components/ui/field";
 import SocialLogin from "@/components/SocialLogin";
-import { Suspense } from "react";
 
 export default function LoginPage() {
   return (
@@ -23,9 +22,8 @@ export default function LoginPage() {
         </CardHeader>
 
         <CardContent>
-          <Suspense fallback={<p>Loading...</p>}>
             <LoginForm />
-          </Suspense>
+
 
           <FieldSeparator className={"mt-3"}>Or continue with</FieldSeparator>
           <SocialLogin />

@@ -9,7 +9,6 @@ import {
 import { FieldSeparator } from "@/components/ui/field";
 import SocialLogin from "@/components/SocialLogin";
 import RegisterForm from "@/components/RegisterForm";
-import { Suspense } from "react";
 
 export default function RegisterPage() {
   return (
@@ -25,9 +24,7 @@ export default function RegisterPage() {
         </CardHeader>
 
         <CardContent>
-          <Suspense fallback={<p>Loading...</p>}>
             <RegisterForm />
-          </Suspense>
 
           <FieldSeparator className={"mt-3"}>Or continue with</FieldSeparator>
           <SocialLogin />
