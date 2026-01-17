@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
 import { FieldSeparator } from "./ui/field";
 
 /* ------------------ Validation Schema ------------------ */
@@ -24,7 +23,7 @@ const formSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-export default function LoginForm() {
+export default function LoginForm({callbackUrl}) {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,8 +39,8 @@ export default function LoginForm() {
     setValue("password", "123456");
   };
 
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  // const searchParams = useSearchParams();
+  // const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   async function onSubmit(values) {
     await signIn("credentials", {

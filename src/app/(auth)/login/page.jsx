@@ -1,4 +1,3 @@
-"use client"
 import {
   Card,
   CardContent,
@@ -6,11 +5,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import LoginForm from "@/components/LoginForm";
 import { FieldSeparator } from "@/components/ui/field";
 import SocialLogin from "@/components/SocialLogin";
+import LoginForm from "@/components/LoginForm";
 
-export default function LoginPage() {
+
+export default function LoginPage({searchParams}) {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <Card className="w-full max-w-md">
@@ -22,11 +22,9 @@ export default function LoginPage() {
         </CardHeader>
 
         <CardContent>
-            <LoginForm />
-
-
+            <LoginForm callbackUrl={searchParams.callbackUrl || "/"}/>
           <FieldSeparator className={"mt-3"}>Or continue with</FieldSeparator>
-          <SocialLogin />
+          <SocialLogin callbackUrl={searchParams.callbackUrl || "/"} />
           <p className="text-sm text-center text-muted-foreground mt-4">
             Do not have an account?{" "}
             <a href="/register" className="text-secondary underline">
