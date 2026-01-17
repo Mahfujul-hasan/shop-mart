@@ -1,3 +1,4 @@
+"use client"
 import {
   Card,
   CardContent,
@@ -24,7 +25,7 @@ export default function LoginPage() {
           <LoginForm />
 
           <FieldSeparator className={"mt-3"}>Or continue with</FieldSeparator>
-          <SocialLogin/>
+          <SocialLogin />
           <p className="text-sm text-center text-muted-foreground mt-4">
             Do not have an account?{" "}
             <a href="/register" className="text-secondary underline">
