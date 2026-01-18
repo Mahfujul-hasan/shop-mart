@@ -1,10 +1,10 @@
 "use server"
 
-const { dbConnect, collections } = require("@/lib/dbConnect")
+import { collections, dbConnect } from "@/lib/dbConnect";
 
-const productCollection= dbConnect(collections.PRODUCTS);
 
 export const getCategories=async()=>{
+   const productCollection= dbConnect(collections.PRODUCTS);
    try {
      const categories = await productCollection.aggregate([
         { $group: { _id: "$category" } },        

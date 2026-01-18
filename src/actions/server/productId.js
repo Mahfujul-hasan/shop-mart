@@ -2,8 +2,8 @@
 import { collections, dbConnect } from "@/lib/dbConnect";
 import { ObjectId } from "mongodb";
 
-const productCollection=dbConnect(collections.PRODUCTS)
 export const getProductById=async(id)=>{
+    const productCollection=dbConnect(collections.PRODUCTS)
     const product = await productCollection.findOne({ _id: new ObjectId(id) });
     return product;
 }

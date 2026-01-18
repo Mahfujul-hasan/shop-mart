@@ -1,7 +1,9 @@
-const { dbConnect, collections } = require("@/lib/dbConnect")
+"use server"
+import { collections, dbConnect } from "@/lib/dbConnect";
 
-const productCollection = dbConnect(collections.PRODUCTS);
+
 export const getLatestProducts = async()=>{
+    const productCollection = dbConnect(collections.PRODUCTS);
     
     try {
         const products = await productCollection.find().sort({createdAt:-1}).limit(8).toArray();
