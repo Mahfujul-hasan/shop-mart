@@ -1,12 +1,13 @@
 "use server"
 
-import { collections, dbConnect } from "@/lib/dbConnect";
+import { getCollection } from "@/lib/dbConnect";
 
 
 export const getCategories=async()=>{
-   const productCollection= dbConnect(collections.PRODUCTS);
+   const collection = await getCollection("products"); 
+
    try {
-     const categories = await productCollection.aggregate([
+     const categories = await collection.aggregate([
         { $group: { _id: "$category" } },        
         { $project: { _id: 0, category: "$_id" } } 
       ]).toArray();

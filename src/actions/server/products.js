@@ -1,14 +1,15 @@
 "use server"
 
-import { collections, dbConnect } from "@/lib/dbConnect";
+import { getCollection } from "@/lib/dbConnect";
 export const getProducts = async () => {
-    const productCollection = dbConnect(collections.PRODUCTS);
-    const products = await productCollection.find().toArray();
+    const collection = await getCollection("products"); 
+    const products = await collection.find().toArray();
     return products;
 }
 export const postProduct = async (product) => {
+    const collection = await getCollection("products"); 
     try {
-        await productCollection.insertOne(product);
+        await collection.insertOne(product);
         return { success: true };
     } catch (error) {
         console.error("addProduct error:", error);

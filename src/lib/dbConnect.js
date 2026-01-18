@@ -1,17 +1,23 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+import { MongoClient, ServerApiVersion } from "mongodb";
+
 const uri = process.env.MONGODB_URI;
-const dbname= process.env.DB_NAME;
-export const collections={
-    PRODUCTS:"products",
-};
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
+const dbname = process.env.DB_NAME;
+
+if (!uri) throw new Error("MONGODB_URI is missing!");
+if (!dbname) throw new Error("DB_NAME is missing!");
+
+let client;
+
+export const getCollection = async (collectionName) => {
+  if (!client) {
+    client = new MongoClient(uri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      },
+    });
+    await client.connect(); // connect once
   }
-});
-export const dbConnect = (cname)=>{
-    return client.db(dbname).collection(cname);
-}
+  return client.db(dbname).collection(collectionName);
+};
