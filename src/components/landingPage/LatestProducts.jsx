@@ -2,7 +2,7 @@ import React from 'react';
 import ProductCard from '../ProductCard';
 
 const LatestProducts = async() => {
-    const res = await fetch("/api/products/latest",{
+    const res = await fetch("http://localhost:3000/api/products/latest",{
         next:{revalidate:30}
     })
     const latestProducts= await res.json();

@@ -6,7 +6,7 @@ import React from 'react'
 export default async function ProductDetailsPage({params}) {
     const {productId} = await params;
     console.log(productId);
-    const res = await fetch(`/api/products/${productId}`, {cache:'no-store'})
+    const res = await fetch(`http://localhost:3000/api/products/${productId}`, {cache:'no-store'})
     const product = await res.json();
     console.log(product);
   return (
