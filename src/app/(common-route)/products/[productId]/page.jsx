@@ -1,13 +1,12 @@
-import { Button } from '@/components/ui/button'
+import { getProductById } from '@/actions/server/productId';
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
 export default async function ProductDetailsPage({params}) {
     const {productId} = await params;
-    console.log(productId);
-    const res = await fetch(`http://localhost:3000/api/products/${productId}`, {cache:'no-store'})
-    const product = await res.json();
+    // console.log(productId);
+    const product = await getProductById(productId)
     console.log(product);
   return (
      <div className="max-w-6xl mx-auto p-6 lg:p-10 grid grid-cols-1 lg:grid-cols-2 gap-10">

@@ -16,6 +16,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { postProduct } from "@/actions/server/products";
+import Swal from "sweetalert2";
+
 const categories = [
   "Electronics",
   "Fashion",
@@ -46,20 +49,28 @@ export default function ProductForm({ session }) {
     data.rating = Number(data.rating);
     data.reviews = Number(data.reviews);
     data.stock = Number(data.stock);
-    data.createdAt=new Date();
+    data.createdAt = new Date();
 
-    const res = await fetch("http://localhost:3000/api/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    const post = await postProduct(data);
 
     setLoading(false);
 
-    if (res.ok) {
+    if (post.success) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       router.push("/all-products");
     } else {
-      alert("Failed to add product");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to add product!",
+        
+      });
     }
   }
 

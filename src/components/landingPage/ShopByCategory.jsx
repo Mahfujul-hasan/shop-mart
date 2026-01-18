@@ -1,11 +1,9 @@
+import { getCategories } from "@/actions/server/categories"
 import { Card, CardContent } from "@/components/ui/card"
 
 
 export default async function ShopByCategory() {
-  const res = await fetch("http://localhost:3000/api/products/category",{
-    cache:"force-cache"
-  });
-  const categories=await res.json();
+  const categories = await getCategories();
   return (
     <section id="category" className="w-full mt-10">
       <div className="px-5">

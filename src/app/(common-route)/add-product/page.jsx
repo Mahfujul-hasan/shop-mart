@@ -1,9 +1,10 @@
 import ProductForm from '@/components/ProductForm';
-import { authOptions } from '@/utils/authOptions';
+import { authOptions } from '@/lib/authOptions';
 import { getServerSession } from 'next-auth';
 import React from 'react';
 
 const page = async() => {
+    
     const session = await getServerSession(authOptions);
     return (
         <div className="max-w-2xl mx-auto p-6 bg-card rounded-lg my-10">

@@ -1,11 +1,9 @@
 import React from 'react';
 import ProductCard from '../ProductCard';
+import { getLatestProducts } from '@/actions/server/latestProducts';
 
 const LatestProducts = async() => {
-    const res = await fetch("http://localhost:3000/api/products/latest",{
-        next:{revalidate:30}
-    })
-    const latestProducts= await res.json();
+    const latestProducts = await getLatestProducts();
     return (
         <section id='latest-products' className="w-full mt-10">
       <div className="px-5">
